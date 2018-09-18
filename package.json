@@ -1,0 +1,20 @@
+{
+  "name": "quantor",
+  "version": "1.0.0",
+  "description": "Simple SSR API docs",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "build": "rm -rf build && mkdir build && node src/index.js > build/index.html"
+  },
+  "author": "Jason Rametta <rametta@outlook.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "mustache": "^3.0.0"
+  },
+  "homepage": "https://github.com/rametta/quantor",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rametta/quantor.git"
+  }
+}
