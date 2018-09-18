@@ -3,7 +3,7 @@ const { render } = require('mustache')
 
 const data = {title: 'Docs title'}
 
-const html = (data) => {
+const quantor = (data) => {
   fs.readFile('src/index.mustache', (err, template) => {
     if (err) throw err;
     const output = render(template.toString(), data);
@@ -11,4 +11,6 @@ const html = (data) => {
   });
 }
 
-html(data)
+quantor(data)
+
+module.exports = quantor

@@ -1,0 +1,88 @@
+{
+  "title": "Quantor API Docs",
+  "description": "Something insightful",
+  "base": "https://mydocs.com/api/",
+  "endpoints": [
+    {
+      "name": "my-people",
+      "display": "People",
+      "description": "Retrieve and modify all the peoples",
+      "handlers": {
+        "GET": {
+          "requiredQueryParams": [
+            {
+              "name": "uid",
+              "description": "Peoples ID"
+            }
+          ]
+        },
+        "POST": {
+          "requiredBodyParams": [
+            {
+              "name": "uids",
+              "description": "User IDs"
+            },
+            {
+              "name": "people",
+              "description": "Array of people objects"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "my-account",
+      "display": "My Account",
+      "description": "A user account",
+      "handlers": {
+        "GET": {
+          "requiredQueryParams": [
+            {
+              "name": "id",
+              "description": "user id"
+            },
+            {
+              "name": "language"
+            },
+            {
+              "name": "year"
+            },
+            {
+              "name": "somethingelse"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "another-endpoint",
+      "display": "Another Endpoint",
+      "description": "Get and Set user's points",
+      "handlers": {
+        "GET": {
+          "requiredQueryParams": [
+            {
+              "name": "banner"
+            },
+            {
+              "name": "lang"
+            },
+            {
+              "name": "uid"
+            }
+          ]
+        },
+        "POST": {
+          "requiredBodyParams": [
+            {
+              "name": "uid"
+            },
+            {
+              "name": "notifications"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
