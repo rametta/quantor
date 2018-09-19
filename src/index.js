@@ -3,7 +3,7 @@ const { render } = require('mustache')
 
 // const json = require('./../sample.json')
 
-const quantor = data => {
+const quantor = data => callback => {
   const formatted = {
     title: data.title,
     description: data.description,
@@ -42,9 +42,9 @@ const quantor = data => {
 
   fs.readFile(__dirname + '/index.mustache', (err, template) => {
     if (err) throw err
-    const output = render(template.toString(), formatted)
-    console.log(output)
-    return output
+    const html = render(template.toString(), formatted)
+    console.log(html)
+    callback(html)
   })
 }
 

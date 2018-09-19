@@ -17,11 +17,7 @@ Blazing fast Server Side Rendered API Docs engine.
 import quantor from 'quantor'
 
 const data = {...JSON API Docs}
-const html = quantor(data)
-
-// express or google cloud function
-res.set('Content-Type', 'text/html');
-res.send(new Buffer(html));
+quantor(data)(html => res.set('Content-Type', 'text/html').send(new Buffer(html)))
 ```
 
 ![quantor screenshot](/screenshot.png 'Quantor Screenshot')

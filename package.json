@@ -1,6 +1,6 @@
 {
   "name": "quantor",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Simple SSR API docs",
   "main": "src/index.js",
   "scripts": {
