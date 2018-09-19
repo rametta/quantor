@@ -23,3 +23,5 @@ const html = quantor(data)
 res.set('Content-Type', 'text/html');
 res.send(new Buffer(html));
 ```
+
+![quantor screenshot](/screenshot.png "Quantor Screenshot")

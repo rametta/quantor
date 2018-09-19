@@ -1,10 +1,65 @@
 {
   "title": "Quantor API Docs",
   "description": "Something insightful",
-  "base": "https://mydocs.com/api/",
+  "base": "https://mydocs.com",
   "endpoints": [
     {
-      "name": "my-people",
+      "name": "/api/another-endpoint",
+      "display": "Another Endpoint",
+      "description": "Get and Set user's points",
+      "handlers": {
+        "GET": {
+          "requiredQueryParams": [
+            {
+              "name": "banner",
+              "description": "Some explanation of what a banner is"
+            },
+            {
+              "name": "uid",
+              "description": "User Identification"
+            }
+          ],
+          "optionalQueryParams": [
+            {
+              "name": "lang",
+              "description": "Some language [EN|FR]"
+            }
+          ]
+        },
+        "POST": {
+          "requiredBodyParams": [
+            {
+              "name": "uid"
+            },
+            {
+              "name": "notifications"
+            }
+          ]
+        },
+        "PUT": {
+          "requiredBodyParams": [
+            {
+              "name": "uid"
+            },
+            {
+              "name": "notifications"
+            }
+          ]
+        },
+        "DELETE": {
+          "requiredBodyParams": [
+            {
+              "name": "uid"
+            },
+            {
+              "name": "notifications"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "/api/my-people",
       "display": "People",
       "description": "Retrieve and modify all the peoples",
       "handlers": {
@@ -31,7 +86,7 @@
       }
     },
     {
-      "name": "my-account",
+      "name": "/api/my-account",
       "display": "My Account",
       "description": "A user account",
       "handlers": {
@@ -49,36 +104,6 @@
             },
             {
               "name": "somethingelse"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "another-endpoint",
-      "display": "Another Endpoint",
-      "description": "Get and Set user's points",
-      "handlers": {
-        "GET": {
-          "requiredQueryParams": [
-            {
-              "name": "banner"
-            },
-            {
-              "name": "lang"
-            },
-            {
-              "name": "uid"
-            }
-          ]
-        },
-        "POST": {
-          "requiredBodyParams": [
-            {
-              "name": "uid"
-            },
-            {
-              "name": "notifications"
             }
           ]
         }
