@@ -3,8 +3,7 @@ const { render } = require('mustache')
 
 // const json = require('./../sample.json')
 
-const quantor = (data) => {
-
+const quantor = data => {
   const formatted = {
     title: data.title,
     description: data.description,
@@ -16,7 +15,7 @@ const quantor = (data) => {
       handlers: Object.keys(endpoint.handlers)
         .map(key => ({
           key: key.toLowerCase(),
-          handler: endpoint.handlers[key]
+          handler: endpoint.handlers[key],
         }))
         .map(({ key, handler }) => ({
           get: key === 'get',
@@ -36,16 +35,17 @@ const quantor = (data) => {
           optionalQueryParams: handler.optionalQueryParams && handler.optionalQueryParams.map(format),
           optionalBodyParams: handler.optionalBodyParams && handler.optionalBodyParams.map(format),
           requiredHeaders: handler.requiredHeaders && handler.requiredHeaders.map(format),
-          optionalHeaders: handler.optionalHeaders && handler.optionalHeaders.map(format)
-        }))
-    }))
+          optionalHeaders: handler.optionalHeaders && handler.optionalHeaders.map(format),
+        })),
+    })),
   }
 
-  fs.readFile('src/index.mustache', (err, template) => {
-    if (err) throw err;
-    const output = render(template.toString(), formatted);
+  fs.readFile(__dirname + '/index.mustache', (err, template) => {
+    if (err) throw err
+    const output = render(template.toString(), formatted)
     console.log(output)
-  });
+    return output
+  })
 }
 
 const format = ({ name, description }) => ({ name, info: description })

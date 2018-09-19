@@ -3,7 +3,7 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/rametta/quantor/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-# ☄ Quantor
+# 💃 Quantor
 
 Blazing fast Server Side Rendered API Docs engine.
 
@@ -24,4 +24,4 @@ res.set('Content-Type', 'text/html');
 res.send(new Buffer(html));
 ```
 
-![quantor screenshot](/screenshot.png "Quantor Screenshot")
+![quantor screenshot](/screenshot.png 'Quantor Screenshot')
