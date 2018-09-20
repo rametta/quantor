@@ -43,13 +43,12 @@ const quantor = data => callback => {
   fs.readFile(__dirname + '/index.mustache', (err, template) => {
     if (err) throw err
     const html = render(template.toString(), formatted)
-    console.log(html)
     callback(html)
   })
 }
 
 const format = ({ name, description }) => ({ name, info: description })
 
-// quantor(json)
+// quantor(json)(html => console.log(html))
 
 module.exports = quantor

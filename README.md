@@ -16,8 +16,61 @@ Blazing fast Server Side Rendered API Docs engine.
 ```js
 import quantor from 'quantor'
 
-const data = {...JSON API Docs}
-quantor(data)(html => res.set('Content-Type', 'text/html').send(new Buffer(html)))
+const json = {...JSON API Docs}
+quantor(json)(html => /* do something with html */)
+
+// Express or GCF example
+quantor(json)(html => res.set('Content-Type', 'text/html').send(new Buffer(html)))
 ```
 
-![quantor screenshot](/screenshot.png 'Quantor Screenshot')
+## JSON Structure
+
+Quantor generates the docs based on the JSON provided. The JSON must follow the Quantor JSON Spec. See this [example file](/sample.json) for the structure expected or see below.
+
+Basic structure:
+```json
+{
+  "title": "String",
+  "description": "String",
+  "base": "String",
+  "endpoints": [
+    {
+      "name": "String",
+      "display": "String",
+      "description": "String",
+      "handlers": {
+        "GET": {
+          "requiredQueryParams": [
+            {
+              "name": "String",
+              "description": "String"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+Facts:
+- Endpoints expects an array of endpoint objects
+- Each endpoint object should have a handlers property
+- The handlers property is a map of http methods like:
+  + GET
+  + POST
+  + PUT
+  + DELETE
+  + PATCH
+  + OPTIONS
+  + HEAD
+- Each http method should be an object with optional properties of
+  + requiredQueryParams
+  + optionalQueryParams
+  + requiredBodyParams
+  + optionalBodyParams
+  + requiredHeaders
+  + optionalHeaders
+- Each of those properties should be an array of objects with Name and Description
+
+![quantor screenshot](/assets/screenshot.png 'Quantor Screenshot')

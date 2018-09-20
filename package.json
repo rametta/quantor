@@ -1,10 +1,10 @@
 {
   "name": "quantor",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Simple SSR API docs",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "dev": "node src/index.js",
     "build": "rm -rf build && mkdir build && node src/index.js > build/index.html"
   },
   "author": "Jason Rametta <rametta@outlook.com>",
@@ -16,5 +16,15 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:rametta/quantor.git"
-  }
+  },
+  "keywords": [
+    "mustache",
+    "swagger",
+    "SSR",
+    "API",
+    "docs",
+    "fast",
+    "simple",
+    "easy"
+  ]
 }
