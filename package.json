@@ -1,11 +1,12 @@
 {
   "name": "quantor",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Simple SSR API docs",
   "main": "src/index.js",
   "scripts": {
     "dev": "node src/index.js",
-    "build": "rm -rf build && mkdir build && node src/index.js > build/index.html"
+    "build": "rm -rf build && mkdir build && node src/index.js > build/index.html",
+    "deploy": "surge -p build -d quantor.surge.sh"
   },
   "author": "Jason Rametta <rametta@outlook.com>",
   "license": "Apache-2.0",

@@ -12,6 +12,14 @@
   <style>
     html, body {
       height: 100%;
+      scroll-behavior: smooth;
+    }
+    a {
+      transition: color 0.2s;
+    }
+    a:hover {
+      animation: zomg 3s infinite;
+      text-decoration: none;
     }
     .page {
       min-height: 100%;
@@ -47,6 +55,58 @@
     .first-col {
       width: 30%;
     }
+    .sticky-sidebar {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 72px;
+      z-index: 1020;
+    }
+    .zoom {
+      transition: transform .2s;
+    }
+    .zoom:hover {
+      transform: scale(1.03);
+    }
+    .bg-quantor {
+      background-image: radial-gradient( circle farthest-corner at 12.3% 19.3%,  rgba(85,88,218,1) 0%, rgba(95,209,249,1) 100.2% );
+    }
+    .progress-container {
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 1021;
+    }
+    .progress-bar {
+      height: 4px;
+      background: radial-gradient( circle farthest-corner at 12.3% 19.3%,  rgba(85,88,218,1) 0%, rgba(95,209,249,1) 100.2% );
+      width: 0%;
+    }
+    /* .endpoint-form {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+    } */
+    @keyframes zomg {
+      0%,
+      100% {
+        color: #7ccdea;
+      }
+      16% {
+        color: #0074d9;
+      }
+      32% {
+        color: #2ecc40;
+      }
+      48% {
+        color: #ffdc00;
+      }
+      64% {
+        color: #b10dc9;
+      }
+      80% {
+        color: #ff4136;
+      }
+    }
   </style>
 
 </head>
@@ -54,8 +114,8 @@
 <body>
 
   <div class="page">
-    <nav class="navbar navbar-dark bg-dark sticky-top">
-      <span class="navbar-brand">{{title}}</span>
+    <nav class="navbar bg-quantor sticky-top">
+      <span class="navbar-brand text-white">{{title}}</span>
       <span class="navbar-text ml-auto">
         <a title="Quantor Github" target="_blank" href="https://github.com/rametta/quantor">
           <img alt="github logo" src="https://raw.githubusercontent.com/rametta/quantor/master/assets/github.png" class="github" />
@@ -63,14 +123,33 @@
       </span>
     </nav>
 
-    <div class="container content">
+    <div class="progress-container position-fixed">
+      <div class="progress-bar" id="quantor-bar"></div>
+    </div> 
+
+    <div class="container-fluid content">
       <div class="row">
-        <div class="col">
+        <div class="col-md-3 d-none d-md-block">
+
+          <div class="my-3 sticky-sidebar">
+            <div class="text-muted">Endpoints</div>
+
+            <div class="list-group my-3">
+              {{#endpoints}}
+                <a href="#{{name}}" class="list-group-item list-group-item-action zoom">
+                  {{display}}
+                </a>
+              {{/endpoints}}
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-9 col-sm-12 col-xs-12">
 
           <div class="text-muted my-3">{{description}}</div>
 
           {{#endpoints}}
-          <div class="card my-3">
+          <div id="{{name}}" class="card my-3">
             <div class="card-header">
               {{display}} | <a href="{{base}}{{name}}" target="_blank" title="{{display}}">{{name}}</a>
             </div>
@@ -124,11 +203,11 @@
                 {{#queryParams}}
                 <small>Query Params</small>
                 <div class="table-responsive">
-                  <table class="table table-sm table-hover">
+                  <table class="table table-sm">
                     <tbody>
                     {{#requiredQueryParams}}
                       <tr>
-                        <th class="first-col" nowrap scope="row">* {{name}}</th>
+                        <td class="first-col" nowrap scope="row">* <strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
                         <td class="text-muted">
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
@@ -137,7 +216,7 @@
                     {{/requiredQueryParams}}
                     {{#optionalQueryParams}}
                       <tr>
-                        <th class="first-col" nowrap scope="row">{{name}}</th>
+                        <td class="first-col" nowrap scope="row"><strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
                         <td class="text-muted">
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
@@ -152,11 +231,11 @@
                 {{#bodyParams}}
                 <small>Body Params</small>
                 <div class="table-responsive">
-                  <table class="table table-sm table-hover">
+                  <table class="table table-sm">
                     <tbody>
                     {{#requiredBodyParams}}
                       <tr>
-                        <th class="first-col" nowrap scope="row">* {{name}}</th>
+                        <td class="first-col" nowrap scope="row">* <strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
                         <td class="text-muted">
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
@@ -165,7 +244,7 @@
                     {{/requiredBodyParams}}
                     {{#optionalBodyParams}}
                       <tr>
-                        <th class="first-col" nowrap scope="row">{{name}}</th>
+                        <td class="first-col" nowrap scope="row"><strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
                         <td class="text-muted">
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
@@ -178,13 +257,13 @@
                 {{/bodyParams}}
 
                 {{#headers}}
-                <small>Body Params</small>
+                <small>Headers</small>
                 <div class="table-responsive">
-                  <table class="table table-sm table-hover">
+                  <table class="table table-sm">
                     <tbody>
                     {{#requiredHeaders}}
                       <tr>
-                        <th class="first-col" nowrap scope="row">* {{name}}</th>
+                        <td class="first-col" nowrap scope="row">* <strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
                         <td class="text-muted">
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
@@ -193,7 +272,7 @@
                     {{/requiredHeaders}}
                     {{#optionalHeaders}}
                       <tr>
-                        <th class="first-col" nowrap scope="row">{{name}}</th>
+                        <td class="first-col" nowrap scope="row"><strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
                         <td class="text-muted">
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
@@ -207,8 +286,39 @@
 
               {{/handlers}}
 
-            </div>
-          </div>
+              <!-- <button type="button" class="btn btn-sm btn-outline-primary toggle-accordion">Try it!</button>
+
+              <div class="endpoint-form">
+                <hr />
+                <form class="mt-3" name="{{name}}" onsubmit="return submitForm('{{name}}')">
+                  {{#handlers}}
+
+                    {{#requiredQueryParams}}
+                    <div class="form-group">
+                      <label for="{{name}}">* {{name}} <small><span class="badge badge-secondary">{{type}}</span></small></label>
+                      <input required type="text" class="form-control" name="{{name}}" placeholder="{{info}}">
+                    </div>
+                    {{/requiredQueryParams}}
+
+                    {{#optionalQueryParams}}
+                    <div class="form-group">
+                      <label for="{{name}}">{{name}} <small><span class="badge badge-secondary">{{type}}</span></small></label>
+                      <input type="text" class="form-control" name="{{name}}" placeholder="{{info}}">
+                    </div>
+                    {{/optionalQueryParams}}
+
+                  {{/handlers}}
+
+                  <button type="submit" class="btn btn-success">Send</button>
+                </form>
+
+<pre class="hidden">
+<code id="{{name}}-response"></code>
+</pre>
+              </div> -->
+
+            </div> <!-- .card-body -->
+          </div> <!-- .card -->
           {{/endpoints}}
 
           {{^endpoints}}
@@ -221,7 +331,7 @@
       </div>
     </div>
 
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-quantor">
       <div class="text-center w-100">
         <a class="text-white" href="https://www.npmjs.com/package/quantor" target="_blank">Powered with ❤️️ by the Quantor Engine</a>
       </div>
@@ -229,5 +339,64 @@
   </div>
 
 </body>
+
+<script>
+window.onscroll = updateScrollerBar
+
+// Progress bar updating
+function updateScrollerBar() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("quantor-bar").style.width = scrolled + "%";
+}
+
+// Any form submission handler
+// function submitForm(name, base) {
+//   var form = document.forms[name]
+//   var elems = form.elements
+//   var url = '{{{base}}}' + name
+//   var data = {}
+
+//   for (var i = 0, elem; elem = elems[i++];) {
+//     if (elem.type === "text") {
+//       data[elem.name] = elem.value
+//     }
+//   }
+
+//   fetch(url, {
+//     method: 'POST',
+//     mode: 'cors',
+//     cache: 'no-cache',
+//     body: JSON.stringify(data)
+//   })
+//   .then(res => res.json())
+//   .then(res => {
+//     var resBlock = document.getElementById(name + '-response')
+//     resBlock.innerHTML = res
+//   })
+//   .catch(err => {
+//     var resBlock = document.getElementById(name + '-response')
+//     resBlock.innerHTML = err
+//   })
+
+//   return false
+// }
+
+// Accordion toggling
+// document
+//   .querySelectorAll(".toggle-accordion")
+//   .forEach(function(acc) {
+//     acc.addEventListener("click", function() {
+//       this.classList.toggle("active");
+//       var panel = this.nextElementSibling;
+//       if (panel.style.maxHeight){
+//         panel.style.maxHeight = null;
+//       } else {
+//         panel.style.maxHeight = panel.scrollHeight + "px";
+//       } 
+//     });
+//   })
+</script>
 
 </html>

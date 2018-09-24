@@ -5,7 +5,7 @@
 
 # 💃 Quantor
 
-Blazing fast Server Side Rendered API Docs engine.
+Blazing fast Server Side Rendered API Docs engine. [Demo](https://quantor.surge.sh/)
 
 ## Install
 
@@ -43,7 +43,8 @@ Basic structure:
           "requiredQueryParams": [
             {
               "name": "String",
-              "description": "String"
+              "description": "String",
+              "type": "String"
             }
           ]
         }
@@ -71,6 +72,6 @@ Facts:
   + optionalBodyParams
   + requiredHeaders
   + optionalHeaders
-- Each of those properties should be an array of objects with Name and Description
+- Each of those properties should be an array of objects with a name, description & type.
 
 ![quantor screenshot](/assets/screenshot.png 'Quantor Screenshot')

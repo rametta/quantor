@@ -47,7 +47,7 @@ const quantor = data => callback => {
   })
 }
 
-const format = ({ name, description }) => ({ name, info: description })
+const format = ({ name, description, type }) => ({ name, type, info: description })
 
 // quantor(json)(html => console.log(html))
 

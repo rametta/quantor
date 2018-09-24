@@ -1,6 +1,6 @@
 {
   "title": "Quantor API Docs",
-  "description": "Something insightful",
+  "description": "Building a brighter future today for the kids of yesterday.",
   "base": "https://mydocs.com",
   "endpoints": [
     {
@@ -12,17 +12,26 @@
           "requiredQueryParams": [
             {
               "name": "banner",
-              "description": "Some explanation of what a banner is"
+              "description": "Some explanation of what a banner is",
+              "type": "String"
             },
             {
               "name": "uid",
-              "description": "User Identification"
+              "description": "User Identification",
+              "type": "Number"
             }
           ],
           "optionalQueryParams": [
             {
               "name": "lang",
               "description": "Some language [EN|FR]"
+            }
+          ],
+          "requiredHeaders": [
+            {
+              "name": "jwt",
+              "description": "A JSON Web Token",
+              "type": "String"
             }
           ]
         },
