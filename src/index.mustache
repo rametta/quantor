@@ -81,11 +81,17 @@
       background: radial-gradient( circle farthest-corner at 12.3% 19.3%,  rgba(85,88,218,1) 0%, rgba(95,209,249,1) 100.2% );
       width: 0%;
     }
-    /* .endpoint-form {
+    .accordion-item {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.2s ease-out;
-    } */
+    }
+    .returns {
+      overflow-y: auto;
+      max-height: 350px;
+      background: rgba(0,0,0,.03);
+      border: 1px solid #dee2e6;
+    }
     @keyframes zomg {
       0%,
       100% {
@@ -284,38 +290,22 @@
                 </div>
                 {{/headers}}
 
+                {{#hasResponses}}
+                <button type="button" class="btn btn-sm btn-outline-secondary toggle-accordion mb-3">Responses</button>
+
+                <div class="accordion-item">
+                  <div class="mb-3">
+                    {{#responses}}
+                    <div>
+                      <span class="badge badge-secondary">{{code}}</span>
+                    </div>
+<pre class="returns p-1"><code>{{model}}</code></pre>
+                    {{/responses}}
+                  </div>
+                </div>
+                {{/hasResponses}}
+
               {{/handlers}}
-
-              <!-- <button type="button" class="btn btn-sm btn-outline-primary toggle-accordion">Try it!</button>
-
-              <div class="endpoint-form">
-                <hr />
-                <form class="mt-3" name="{{name}}" onsubmit="return submitForm('{{name}}')">
-                  {{#handlers}}
-
-                    {{#requiredQueryParams}}
-                    <div class="form-group">
-                      <label for="{{name}}">* {{name}} <small><span class="badge badge-secondary">{{type}}</span></small></label>
-                      <input required type="text" class="form-control" name="{{name}}" placeholder="{{info}}">
-                    </div>
-                    {{/requiredQueryParams}}
-
-                    {{#optionalQueryParams}}
-                    <div class="form-group">
-                      <label for="{{name}}">{{name}} <small><span class="badge badge-secondary">{{type}}</span></small></label>
-                      <input type="text" class="form-control" name="{{name}}" placeholder="{{info}}">
-                    </div>
-                    {{/optionalQueryParams}}
-
-                  {{/handlers}}
-
-                  <button type="submit" class="btn btn-success">Send</button>
-                </form>
-
-<pre class="hidden">
-<code id="{{name}}-response"></code>
-</pre>
-              </div> -->
 
             </div> <!-- .card-body -->
           </div> <!-- .card -->
@@ -351,52 +341,20 @@ function updateScrollerBar() {
   document.getElementById("quantor-bar").style.width = scrolled + "%";
 }
 
-// Any form submission handler
-// function submitForm(name, base) {
-//   var form = document.forms[name]
-//   var elems = form.elements
-//   var url = '{{{base}}}' + name
-//   var data = {}
-
-//   for (var i = 0, elem; elem = elems[i++];) {
-//     if (elem.type === "text") {
-//       data[elem.name] = elem.value
-//     }
-//   }
-
-//   fetch(url, {
-//     method: 'POST',
-//     mode: 'cors',
-//     cache: 'no-cache',
-//     body: JSON.stringify(data)
-//   })
-//   .then(res => res.json())
-//   .then(res => {
-//     var resBlock = document.getElementById(name + '-response')
-//     resBlock.innerHTML = res
-//   })
-//   .catch(err => {
-//     var resBlock = document.getElementById(name + '-response')
-//     resBlock.innerHTML = err
-//   })
-
-//   return false
-// }
-
 // Accordion toggling
-// document
-//   .querySelectorAll(".toggle-accordion")
-//   .forEach(function(acc) {
-//     acc.addEventListener("click", function() {
-//       this.classList.toggle("active");
-//       var panel = this.nextElementSibling;
-//       if (panel.style.maxHeight){
-//         panel.style.maxHeight = null;
-//       } else {
-//         panel.style.maxHeight = panel.scrollHeight + "px";
-//       } 
-//     });
-//   })
+document
+  .querySelectorAll(".toggle-accordion")
+  .forEach(function(acc) {
+    acc.addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight){
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      } 
+    });
+  })
 </script>
 
 </html>

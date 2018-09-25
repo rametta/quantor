@@ -5,7 +5,7 @@
 
 # 💃 Quantor
 
-Blazing fast Server Side Rendered API Docs engine. [Demo](https://quantor.surge.sh/)
+Blazing fast Server Side Rendered UI - API Docs engine. [Demo](https://quantor.surge.sh/)
 
 ## Install
 
@@ -46,17 +46,30 @@ Basic structure:
               "description": "String",
               "type": "String"
             }
+          ],
+          "responses": [
+            {
+              "code": 200,
+              "model": "User"
+            }
           ]
         }
       }
     }
-  ]
+  ],
+  "models": {
+    "User": {
+      "name": "String",
+      "age": "Integer"
+    }
+  }
 }
 ```
 
 Facts:
-- Endpoints expects an array of endpoint objects
-- Each endpoint object should have a handlers property
+- Endpoints expects an array of endpoint objects.
+- Models is an optional map of objects used for response models.
+- Each endpoint object should have a handlers property.
 - The handlers property is a map of http methods like:
   + GET
   + POST
@@ -65,13 +78,13 @@ Facts:
   + PATCH
   + OPTIONS
   + HEAD
-- Each http method should be an object with optional properties of
+- Each http method should be an object with optional properties of:
   + requiredQueryParams
   + optionalQueryParams
   + requiredBodyParams
   + optionalBodyParams
   + requiredHeaders
   + optionalHeaders
+  + responses
 - Each of those properties should be an array of objects with a name, description & type.
 
-![quantor screenshot](/assets/screenshot.png 'Quantor Screenshot')

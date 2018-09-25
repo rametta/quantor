@@ -36,6 +36,9 @@ const quantor = data => callback => {
           optionalBodyParams: handler.optionalBodyParams && handler.optionalBodyParams.map(format),
           requiredHeaders: handler.requiredHeaders && handler.requiredHeaders.map(format),
           optionalHeaders: handler.optionalHeaders && handler.optionalHeaders.map(format),
+
+          hasResponses: !!handler.responses,
+          responses: handler.responses && handler.responses.map(({ code, model }) => ({ code, model: data.models ? (JSON.stringify(data.models[model], null, 2) || model) : model }))
         })),
     })),
   }

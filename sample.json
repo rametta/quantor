@@ -1,6 +1,6 @@
 {
-  "title": "Quantor API Docs",
-  "description": "Building a brighter future today for the kids of yesterday.",
+  "title": "Quantor API Docs V2.1.0",
+  "description": "Building a brighter future today for the kids of yesterday tomorrow.",
   "base": "https://mydocs.com",
   "endpoints": [
     {
@@ -9,6 +9,20 @@
       "description": "Get and Set user's points",
       "handlers": {
         "GET": {
+          "responses": [
+            {
+              "code": 200,
+              "model": "User"
+            },
+            {
+              "code": 400,
+              "model": "BadRequest"
+            },
+            {
+              "code": 401,
+              "model": "Unauthorized"
+            }
+          ],
           "requiredQueryParams": [
             {
               "name": "banner",
@@ -81,6 +95,12 @@
           ]
         },
         "POST": {
+          "responses": [
+            {
+              "code": 418,
+              "model": "Teapot"
+            }
+          ],
           "requiredBodyParams": [
             {
               "name": "uids",
@@ -100,6 +120,12 @@
       "description": "A user account",
       "handlers": {
         "GET": {
+          "response": [
+            {
+              "code": 200,
+              "model": "Product"
+            }
+          ],
           "requiredQueryParams": [
             {
               "name": "id",
@@ -118,5 +144,35 @@
         }
       }
     }
-  ]
+  ],
+  "models": {
+    "User": {
+      "id": "String",
+      "firstName": "String",
+      "lastName": "String",
+      "age": "Integer",
+      "weight": "Float",
+      "isSexy": "Boolean",
+      "nested": {
+        "yes": {
+          "no": "Boolean",
+          "maybe": "Doge"
+        }
+      }
+    },
+    "Product": {
+      "id": "String",
+      "name": "String",
+      "description": "String",
+      "display": "String",
+      "price": "Float",
+      "salePrice": "Float"
+    },
+    "BadRequest": {
+      "msg": "String"
+    },
+    "Unauthorized": {
+      "msg": "String"
+    }
+  }
 }
