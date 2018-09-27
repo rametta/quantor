@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 
+<!--
+_______                     _____              
+__  __ \___  _______ _________  /______________
+_  / / /  / / /  __ `/_  __ \  __/  __ \_  ___/
+/ /_/ // /_/ // /_/ /_  / / / /_ / /_/ /  /    
+\___\_\\__,_/ \__,_/ /_/ /_/\__/ \____//_/     
+
+-->
+
 <head>
   <meta charset="utf-8">
   <title>{{title}}</title>
@@ -61,12 +70,6 @@
       top: 72px;
       z-index: 1020;
     }
-    .zoom {
-      transition: transform .2s;
-    }
-    .zoom:hover {
-      transform: scale(1.03);
-    }
     .bg-quantor {
       background-image: radial-gradient( circle farthest-corner at 12.3% 19.3%,  rgba(85,88,218,1) 0%, rgba(95,209,249,1) 100.2% );
     }
@@ -91,6 +94,14 @@
       max-height: 350px;
       background: rgba(0,0,0,.03);
       border: 1px solid #dee2e6;
+    }
+    .card-anchor {
+      position: relative;
+      top: -110px;
+    }
+    .endpoints {
+      max-height: calc(100vh - 130px);
+      overflow-y: auto;
     }
     @keyframes zomg {
       0%,
@@ -140,10 +151,23 @@
           <div class="my-3 sticky-sidebar">
             <div class="text-muted">Endpoints</div>
 
-            <div class="list-group my-3">
+            <div class="list-group my-3 endpoints shadow">
               {{#endpoints}}
-                <a href="#{{name}}" class="list-group-item list-group-item-action zoom">
-                  {{display}}
+                <a href="#{{name}}" class="list-group-item list-group-item-action">
+                  <div class="d-flex justify-content-between">
+                    <div>{{display}}</div>
+                    <div class="d-flex align-items-center">
+                    {{#handlers}}
+                      {{#get}}<span class="badge badge-primary rounded-0">G</span>{{/get}}
+                      {{#post}}<span class="badge badge-success rounded-0">P</span>{{/post}}
+                      {{#put}}<span class="badge badge-warning rounded-0">P</span>{{/put}}
+                      {{#delete}}<span class="badge badge-danger rounded-0">D</span>{{/delete}}
+                      {{#head}}<span class="badge badge-dark rounded-0">H</span>{{/head}}
+                      {{#options}}<span class="badge badge-dark rounded-0">O</span>{{/options}}
+                      {{#patch}}<span class="badge badge-dark rounded-0">P</span>{{/patch}}
+                    {{/handlers}}
+                    </div>
+                  </div>
                 </a>
               {{/endpoints}}
             </div>
@@ -155,7 +179,8 @@
           <div class="text-muted my-3">{{description}}</div>
 
           {{#endpoints}}
-          <div id="{{name}}" class="card my-3">
+          <div class="card my-3 shadow">
+            <span id="{{name}}" class="card-anchor"></span>
             <div class="card-header">
               {{display}} | <a href="{{base}}{{name}}" target="_blank" title="{{display}}">{{name}}</a>
             </div>
@@ -296,7 +321,7 @@
                 <div class="accordion-item">
                   <div class="mb-3">
                     {{#responses}}
-                    <div>
+                    <div class="mb-1">
                       <span class="badge badge-secondary">{{code}}</span>
                     </div>
 <pre class="returns p-1"><code>{{model}}</code></pre>
@@ -332,6 +357,7 @@
 
 <script>
 window.onscroll = updateScrollerBar
+window.onload = checkHash
 
 // Progress bar updating
 function updateScrollerBar() {
@@ -339,6 +365,15 @@ function updateScrollerBar() {
   var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   var scrolled = (winScroll / height) * 100;
   document.getElementById("quantor-bar").style.width = scrolled + "%";
+}
+
+// Check hash param to scroll into view
+function checkHash() {
+  var hash = location.hash.replace('#','');
+  if (!hash) return
+  var elem = document.getElementById(hash)
+  if (!elem) return
+  window.scrollTo(0, elem.getBoundingClientRect().top + pageYOffset)
 }
 
 // Accordion toggling

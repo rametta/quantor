@@ -1,12 +1,12 @@
 {
-  "title": "Quantor API Docs V2.1.0",
+  "title": "🧙 Quantor API Docs V2.1.1",
   "description": "Building a brighter future today for the kids of yesterday tomorrow.",
   "base": "https://mydocs.com",
   "endpoints": [
     {
-      "name": "/api/another-endpoint",
-      "display": "Another Endpoint",
-      "description": "Get and Set user's points",
+      "name": "/api/user",
+      "display": "User Data",
+      "description": "Access all user data",
       "handlers": {
         "GET": {
           "responses": [
@@ -82,7 +82,7 @@
       }
     },
     {
-      "name": "/api/my-people",
+      "name": "/api/people",
       "display": "People",
       "description": "Retrieve and modify all the peoples",
       "handlers": {

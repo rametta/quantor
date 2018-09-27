@@ -1,8 +1,6 @@
 const fs = require('fs')
 const { render } = require('mustache')
 
-// const json = require('./../sample.json')
-
 const quantor = data => callback => {
   const formatted = {
     title: data.title,
@@ -51,7 +49,5 @@ const quantor = data => callback => {
 }
 
 const format = ({ name, description, type }) => ({ name, type, info: description })
-
-// quantor(json)(html => console.log(html))
 
 module.exports = quantor
