@@ -1,5 +1,6 @@
 const fs = require('fs')
 const { render } = require('mustache')
+const { minify } = require('html-minifier')
 
 const quantor = data => callback => {
   const formatted = {
@@ -44,7 +45,21 @@ const quantor = data => callback => {
   fs.readFile(__dirname + '/index.mustache', (err, template) => {
     if (err) throw err
     const html = render(template.toString(), formatted)
-    callback(html)
+    const minified = minify(html, {
+      collapseBooleanAttributes: true,
+      collapseWhitespace: true,
+      decodeEntities: true,
+      html5: true,
+      minifyCSS: true,
+      minifyJS: true,
+      removeAttributeQuotes: true,
+      removeEmptyAttributes: true,
+      removeOptionalTags: true,
+      removeRedundantAttributes: true,
+      trimCustomFragments: true,
+      useShortDoctype: true
+    })
+    callback(minified)
   })
 }
 
