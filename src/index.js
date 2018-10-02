@@ -1,6 +1,8 @@
 const fs = require('fs')
 const { render } = require('mustache')
 
+const template = fs.readFileSync(__dirname + '/index.mustache', 'utf-8')
+
 const quantor = data => callback => {
   const formatted = {
     title: data.title,
@@ -40,12 +42,8 @@ const quantor = data => callback => {
         })),
     })),
   }
-
-  fs.readFile(__dirname + '/index.mustache', (err, template) => {
-    if (err) throw err
-    const html = render(template.toString(), formatted)
-    callback(html)
-  })
+  const html = render(template, formatted)
+  callback(html)
 }
 
 const format = ({ name, description, type }) => ({ name, type, info: description })
