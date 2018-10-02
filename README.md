@@ -5,7 +5,16 @@
 
 # 💃 Quantor
 
-Blazing fast Server Side Rendered UI - API Docs engine. [Demo](https://quantor.surge.sh/)
+Blazing fast alternative to Swagger. [Demo](https://quantor.surge.sh/)
+
+*Complete API docs up and running in less than 5 mins!*
+
+### Features
+- Premade and custimizable UI
+- Extremely fast rendering with mustacheJS
+- Easy to install and setup
+- SSR 100% supported *(and recommended)*
+- Tiny footprint - less than 3kb
 
 ## Install
 
@@ -88,3 +97,5 @@ Facts:
   + responses
 - Each of those properties should be an array of objects with a name, description & type.
 
+## Contributing
+Check out our [contributer docs](/CONTRIBUTING.md) and check out our [issues](https://github.com/rametta/quantor/issues). Pick anything that tickles your fancy or create an issue that you would find useful.
