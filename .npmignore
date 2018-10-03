@@ -1,3 +1,5 @@
 build
 sample.json
 build.js
+*.spec.js
+*.test.js

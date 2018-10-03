@@ -4,6 +4,11 @@ const { render } = require('mustache')
 let template = '' 
 
 const quantor = data => callback => {
+
+  if (!data.endpoints) {
+    throw new Error('Missing endpoints')
+  }
+
   const formatted = {
     title: data.title,
     description: data.description,
