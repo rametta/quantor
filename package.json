@@ -6,14 +6,18 @@
   "types": "src/index.d.ts",
   "scripts": {
     "clean": "rm -rf build && mkdir build",
-    "build": "yarn clean && nodemon --watch index.mustache src/build.js",
-    "deploy": "yarn clean && node src/build.js && surge -p build -d quantor.surge.sh",
+    "build": "yarn clean && node src/build.js",
+    "dev": "yarn clean && nodemon --watch index.mustache src/build.js",
+    "deploy": "yarn build && surge -p build -d quantor.surge.sh",
     "test": "jest"
   },
   "author": "Jason Rametta <rametta@outlook.com>",
   "license": "Apache-2.0",
   "dependencies": {
     "mustache": "^3.0.0"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
   },
   "homepage": "https://github.com/rametta/quantor",
   "repository": {
@@ -29,8 +33,5 @@
     "fast",
     "simple",
     "easy"
-  ],
-  "devDependencies": {
-    "jest": "^23.6.0"
-  }
+  ]
 }
