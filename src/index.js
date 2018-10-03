@@ -2,6 +2,11 @@ const fs = require('fs')
 const { render } = require('mustache')
 
 const quantor = data => callback => {
+
+  if (!data.endpoints) {
+    throw new Error('Missing endpoints')
+  }
+
   const formatted = {
     title: data.title,
     description: data.description,
