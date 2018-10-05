@@ -2,4 +2,6 @@ build
 sample.json
 build.js
 *.spec.js
-*.test.js
+.github
+.travis.yml
+CONTRIBUTING.md

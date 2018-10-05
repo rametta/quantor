@@ -53,6 +53,11 @@ const quantor = data => callback => {
   })
 }
 
-const format = ({ name, description, type }) => ({ name, type, info: description })
+const format = param => ({ 
+  name: param.name, 
+  type: param.type,
+  default: param.default,
+  info: param.description
+})
 
 module.exports = quantor

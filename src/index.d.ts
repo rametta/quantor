@@ -47,6 +47,7 @@ declare module 'quantor' {
   type Param = {
     name: string
     description?: string
+    default?: String|Number|Boolean,
     type?: string
   }
 

@@ -50,11 +50,12 @@ Basic structure:
       "description": "String",
       "handlers": {
         "GET": {
-          "requiredQueryParams": [
+          "optionalQueryParams": [
             {
               "name": "String",
               "description": "String",
-              "type": "String"
+              "type": "String",
+              "default": "Any"
             }
           ],
           "responses": [
@@ -96,7 +97,7 @@ Facts:
   + requiredHeaders
   + optionalHeaders
   + responses
-- Each of those properties should be an array of objects with a name, description & type.
+- Each of those properties should be an array of objects with a name, description, default & type.
 
 ## Contributing
 Check out our [contributer docs](/CONTRIBUTING.md) and check out our [issues](https://github.com/rametta/quantor/issues). Pick anything that tickles your fancy or create an issue that you would find useful.

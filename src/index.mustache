@@ -239,18 +239,28 @@ _  / / /  / / /  __ `/_  __ \  __/  __ \_  ___/
                     {{#requiredQueryParams}}
                       <tr>
                         <td class="first-col" nowrap scope="row">* <strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
-                        <td class="text-muted">
+                        <td>
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
+                          {{#default}}
+                          <small class="text-muted">
+                            Default: {{default}}
+                          </small>
+                          {{/default}}
                         </td>
                       </tr>
                     {{/requiredQueryParams}}
                     {{#optionalQueryParams}}
                       <tr>
                         <td class="first-col" nowrap scope="row"><strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
-                        <td class="text-muted">
+                        <td>
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
+                          {{#default}}
+                          <small class="text-muted">
+                            Default: {{default}}
+                          </small>
+                          {{/default}}
                         </td>
                       </tr>
                     {{/optionalQueryParams}}
@@ -267,18 +277,28 @@ _  / / /  / / /  __ `/_  __ \  __/  __ \_  ___/
                     {{#requiredBodyParams}}
                       <tr>
                         <td class="first-col" nowrap scope="row">* <strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
-                        <td class="text-muted">
+                        <td>
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
+                          {{#default}}
+                          <small class="text-muted">
+                            Default: {{default}}
+                          </small>
+                          {{/default}}
                         </td>
                       </tr>
                     {{/requiredBodyParams}}
                     {{#optionalBodyParams}}
                       <tr>
                         <td class="first-col" nowrap scope="row"><strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
-                        <td class="text-muted">
+                        <td>
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
+                          {{#default}}
+                          <small class="text-muted">
+                            Default: {{default}}
+                          </small>
+                          {{/default}}
                         </td>
                       </tr>
                     {{/optionalBodyParams}}
@@ -295,18 +315,28 @@ _  / / /  / / /  __ `/_  __ \  __/  __ \_  ___/
                     {{#requiredHeaders}}
                       <tr>
                         <td class="first-col" nowrap scope="row">* <strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
-                        <td class="text-muted">
+                        <td>
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
+                          {{#default}}
+                          <small class="text-muted">
+                            Default: {{default}}
+                          </small>
+                          {{/default}}
                         </td>
                       </tr>
                     {{/requiredHeaders}}
                     {{#optionalHeaders}}
                       <tr>
                         <td class="first-col" nowrap scope="row"><strong>{{name}}</strong> <small><span class="badge badge-secondary">{{type}}</span></small></td>
-                        <td class="text-muted">
+                        <td>
                           {{#info}}{{info}}{{/info}}
                           {{^info}}-{{/info}}
+                          {{#default}}
+                          <small class="text-muted">
+                            Default: {{default}}
+                          </small>
+                          {{/default}}
                         </td>
                       </tr>
                     {{/optionalHeaders}}

@@ -38,7 +38,9 @@
           "optionalQueryParams": [
             {
               "name": "lang",
-              "description": "Some language [EN|FR]"
+              "description": "Some language [EN|FR]",
+              "type": "String",
+              "default": "EN"
             }
           ],
           "requiredHeaders": [
@@ -135,10 +137,15 @@
               "name": "language"
             },
             {
-              "name": "year"
-            },
-            {
               "name": "somethingelse"
+            }
+          ],
+          "optionalQueryParams": [
+            {
+              "name": "year",
+              "description": "A year or something",
+              "type": "Number",
+              "default": 2018
             }
           ]
         }
